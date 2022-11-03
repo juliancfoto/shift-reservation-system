@@ -2,10 +2,8 @@ package main.dao.impl;
 
 import main.dao.IDao;
 import main.entities.Dentist;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class DentistIDao implements IDao<Dentist> {
    // Attributes
@@ -14,16 +12,6 @@ public class DentistIDao implements IDao<Dentist> {
    private final static String DB_URL = "jdbc:h2:~/shift_reservation_system;INIT=RUNSCRIPT FROM 'create.sql'";
    private final static String DB_USER = "root";
    private final static String DB_PASS = "root";
-
-   // Query for creating table Dentists
-   /*private static final String SQL_CREATE_TABLE = """
-          CREATE TABLE IF NOT EXISTS Dentists(
-          id INT AUTO_INCREMENT PRIMARY KEY,
-          name VARCHAR(255) NOT NULL,
-          lastname VARCHAR(255) NOT NULL,
-          license VARCHAR(255) NOT NULL
-          );
-          """;*/
 
    // Methods
    // Connect to H2 Driver
@@ -37,7 +25,7 @@ public class DentistIDao implements IDao<Dentist> {
    public Dentist create(Dentist dentist) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement = null;
+      PreparedStatement preparedStatement;
 
       // Query to create a Dentist
       final String SQL_INSERT = """
@@ -87,16 +75,128 @@ public class DentistIDao implements IDao<Dentist> {
 
    @Override
    public Dentist read(Long id) {
-      return null;
+      // Create connection and preparedStatement
+      Connection connection = null;
+      PreparedStatement preparedStatement = null;
+      Dentist dentist = null;
+
+      // Query to read/search a Dentist
+      final String SQL_SEARCH = """
+             SELECT * FROM Dentists
+             WHERE id = ?;
+             """;
+
+      // Connect to Driver
+      try {
+         connection = getConnection();
+         connection.setAutoCommit(false);
+
+         // Create and use preparedStatement to search a Dentist
+         preparedStatement = connection.prepareStatement(SQL_SEARCH);
+
+         // Search in table Dentists
+         preparedStatement.setLong(1, id);
+
+         // Execute and commit
+         ResultSet result = preparedStatement.executeQuery();
+
+         while (result.next()) {
+            dentist = new Dentist();
+            Long dentistId = result.getLong("id");
+            String dentistName = result.getString("Name");
+            String dentistLastName = result.getString("Lastname");
+            String dentistLicense = result.getString("License");
+
+            dentist.setId(dentistId);
+            dentist.setName(dentistName);
+            dentist.setLastName(dentistLastName);
+            dentist.setLicense(dentistLicense);
+
+         }
+
+         connection.commit();
+         connection.setAutoCommit(true);
+
+      } catch (Exception e) {
+         // Rollback to undo changes in case of failure
+         try {
+            assert connection != null;
+            connection.rollback();
+         } catch (SQLException exc) {
+            throw new RuntimeException(exc);
+         }
+
+      } finally {
+         // Close connection
+         try {
+            assert connection != null;
+            connection.close();
+         } catch (SQLException e) {
+            throw new RuntimeException(e);
+         }
+      }
+      return dentist;
    }
 
-   @Override
+   @Override // TODO
    public boolean update(Dentist dentist) {
+      // Create connection and preparedStatement
+      Connection connection = null;
+      PreparedStatement preparedStatement = null;
+
+      // Query to update Dentist data
+      final String SQL_UPDATE = """
+             
+             """;
+
       return false;
    }
 
    @Override
-   public boolean delete(Long id) {
-      return false;
+   public void delete(Long id) {
+      // Create connection and preparedStatement
+      Connection connection = null;
+      PreparedStatement preparedStatement;
+
+      // Query to delete a Dentist
+      final String SQL_DELETE = """
+             DELETE FROM Dentists
+             WHERE id = ?;
+             """;
+
+      // Connect to Driver
+      try {
+         connection = getConnection();
+         connection.setAutoCommit(false);
+
+         // Create and use preparedStatement to delete a Dentist
+         preparedStatement = connection.prepareStatement(SQL_DELETE);
+
+         // Delete from table Dentists
+         preparedStatement.setLong(1, id);
+
+         // Execute and commit
+         preparedStatement.executeUpdate();
+         connection.commit();
+         connection.setAutoCommit(true);
+
+      } catch (Exception e) {
+         // Rollback to undo changes in case of failure
+         try {
+            assert connection != null;
+            connection.rollback();
+         } catch (SQLException exc) {
+            throw new RuntimeException(exc);
+         }
+
+      } finally {
+         // Close connection
+         try {
+            assert connection != null;
+            connection.close();
+         } catch (SQLException e) {
+            throw new RuntimeException(e);
+         }
+      }
    }
 }

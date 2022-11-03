@@ -5,5 +5,5 @@ public interface IDao<T> {
    T create(T t);
    T read(Long id);
    boolean update(T t);
-   boolean delete(Long id);
+   void delete(Long id);
 }
