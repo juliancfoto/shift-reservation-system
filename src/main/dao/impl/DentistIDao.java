@@ -112,6 +112,12 @@ public class DentistIDao implements IDao<Dentist> {
             dentist.setLastName(dentistLastName);
             dentist.setLicense(dentistLicense);
 
+            System.out.printf("""
+                   |  id  |  Name  |  Lastname  |  License  | 
+                   |  %d  |  %s  |  %s  |  %s  |%n
+                   """,
+                   result.getLong(1), result.getString(2),
+                   result.getString(3), result.getString(4));
          }
 
          connection.commit();

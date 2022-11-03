@@ -116,6 +116,14 @@ public class PatientIDao implements IDao<Patient> {
             patient.setAddress(patientAddress);
             patient.setDni(patientDni);
             patient.setDischargeDate(patientDischargeDate);
+
+            System.out.printf("""
+                    |  id  |  Name  | Lastname  |  Address  |  DNI  |  Discharge_Date  |
+                    |  %d  |  %s  |  %s  |  %s  |  %s  |  %s  |%n
+                    """,
+                   result.getLong(1), result.getString(2),
+                   result.getString(3), result.getString(4),
+                   result.getString(5), result.getString(6));
          }
 
          connection.commit();
