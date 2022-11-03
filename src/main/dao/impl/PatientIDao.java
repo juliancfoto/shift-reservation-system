@@ -2,15 +2,24 @@ package main.dao.impl;
 
 import main.dao.IDao;
 import main.entities.Patient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.sql.*;
 
 public class PatientIDao implements IDao<Patient> {
    // Attributes
+   private static final Logger LOGGER = LogManager.getLogger();
+
    // Connection data
    private final static String DB_DRIVER = "org.h2.Driver";
    private final static String DB_URL = "jdbc:h2:~/shift_reservation_system;INIT=RUNSCRIPT FROM 'create.sql'";
    private final static String DB_USER = "root";
    private final static String DB_PASS = "root";
+
+   // Constructor
+   public PatientIDao() {
+      LOGGER.info("Patients database created.");
+   }
 
    // Methods
    // Connect to H2 Driver
@@ -59,7 +68,7 @@ public class PatientIDao implements IDao<Patient> {
             assert connection != null;
             connection.rollback();
          } catch (SQLException exc) {
-            throw new RuntimeException(exc);
+            LOGGER.error(exc.getMessage());
          }
 
       } finally {
@@ -68,9 +77,10 @@ public class PatientIDao implements IDao<Patient> {
             assert connection != null;
             connection.close();
          } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage());
          }
       }
+      LOGGER.info("Patient created.");
       return patient;
    }
 
@@ -117,6 +127,8 @@ public class PatientIDao implements IDao<Patient> {
             patient.setDni(patientDni);
             patient.setDischargeDate(patientDischargeDate);
 
+            LOGGER.info("Reading Patient with id = " + id + "...");
+
             System.out.printf("""
                     |  id  |  Name  | Lastname  |  Address  |  DNI  |  Discharge_Date  |
                     |  %d  |  %s  |  %s  |  %s  |  %s  |  %s  |%n
@@ -135,7 +147,7 @@ public class PatientIDao implements IDao<Patient> {
             assert connection != null;
             connection.rollback();
          } catch (SQLException exc) {
-            throw new RuntimeException(exc);
+            LOGGER.error(exc.getMessage());
          }
 
       } finally {
@@ -144,7 +156,7 @@ public class PatientIDao implements IDao<Patient> {
             assert connection != null;
             connection.close();
          } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage());
          }
       }
       return patient;
@@ -185,6 +197,7 @@ public class PatientIDao implements IDao<Patient> {
          preparedStatement.executeUpdate();
          connection.commit();
          connection.setAutoCommit(true);
+         LOGGER.info("Patient with id = " + id + " deleted.");
 
       } catch (Exception e) {
          // Rollback to undo changes in case of failure
@@ -192,7 +205,7 @@ public class PatientIDao implements IDao<Patient> {
             assert connection != null;
             connection.rollback();
          } catch (SQLException exc) {
-            throw new RuntimeException(exc);
+            LOGGER.error(exc.getMessage());
          }
 
       } finally {
@@ -201,7 +214,7 @@ public class PatientIDao implements IDao<Patient> {
             assert connection != null;
             connection.close();
          } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage());
          }
       }
    }

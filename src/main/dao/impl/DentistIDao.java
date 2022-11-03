@@ -2,16 +2,24 @@ package main.dao.impl;
 
 import main.dao.IDao;
 import main.entities.Dentist;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.sql.*;
 
 public class DentistIDao implements IDao<Dentist> {
    // Attributes
+   private static final Logger LOGGER = LogManager.getLogger();
+
    // Connection data
    private final static String DB_DRIVER = "org.h2.Driver";
    private final static String DB_URL = "jdbc:h2:~/shift_reservation_system;INIT=RUNSCRIPT FROM 'create.sql'";
    private final static String DB_USER = "root";
    private final static String DB_PASS = "root";
+
+   // Constructor
+   public DentistIDao() {
+      LOGGER.info("Dentists database created.");
+   }
 
    // Methods
    // Connect to H2 Driver
@@ -58,7 +66,7 @@ public class DentistIDao implements IDao<Dentist> {
            assert connection != null;
            connection.rollback();
         } catch (SQLException exc) {
-           throw new RuntimeException(exc);
+           LOGGER.error(exc.getMessage());
         }
 
       } finally {
@@ -67,9 +75,10 @@ public class DentistIDao implements IDao<Dentist> {
             assert connection != null;
             connection.close();
          } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage());
          }
       }
+      LOGGER.info("Dentist created.");
       return dentist;
    }
 
@@ -77,7 +86,7 @@ public class DentistIDao implements IDao<Dentist> {
    public Dentist read(Long id) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement = null;
+      PreparedStatement preparedStatement;
       Dentist dentist = null;
 
       // Query to read/search a Dentist
@@ -112,8 +121,10 @@ public class DentistIDao implements IDao<Dentist> {
             dentist.setLastName(dentistLastName);
             dentist.setLicense(dentistLicense);
 
+            LOGGER.info("Reading Dentist with id = " + id + "...");
+
             System.out.printf("""
-                   |  id  |  Name  |  Lastname  |  License  | 
+                   |  id  |  Name  |  Lastname  |  License  |
                    |  %d  |  %s  |  %s  |  %s  |%n
                    """,
                    result.getLong(1), result.getString(2),
@@ -129,7 +140,7 @@ public class DentistIDao implements IDao<Dentist> {
             assert connection != null;
             connection.rollback();
          } catch (SQLException exc) {
-            throw new RuntimeException(exc);
+            LOGGER.error(exc.getMessage());
          }
 
       } finally {
@@ -138,7 +149,7 @@ public class DentistIDao implements IDao<Dentist> {
             assert connection != null;
             connection.close();
          } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage());
          }
       }
       return dentist;
@@ -185,6 +196,7 @@ public class DentistIDao implements IDao<Dentist> {
          preparedStatement.executeUpdate();
          connection.commit();
          connection.setAutoCommit(true);
+         LOGGER.info("Dentist with id = " + id + " deleted.");
 
       } catch (Exception e) {
          // Rollback to undo changes in case of failure
@@ -192,7 +204,7 @@ public class DentistIDao implements IDao<Dentist> {
             assert connection != null;
             connection.rollback();
          } catch (SQLException exc) {
-            throw new RuntimeException(exc);
+            LOGGER.error(exc.getMessage());
          }
 
       } finally {
@@ -201,7 +213,7 @@ public class DentistIDao implements IDao<Dentist> {
             assert connection != null;
             connection.close();
          } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage());
          }
       }
    }
