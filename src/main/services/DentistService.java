@@ -29,10 +29,6 @@ public class DentistService {
    }
 
    // Getters and setters
-   public IDao<Dentist> getDentistIDao() {
-      return dentistIDao;
-   }
-
    public void setDentistIDao(IDao<Dentist> dentistIDao) {
       this.dentistIDao = dentistIDao;
    }
