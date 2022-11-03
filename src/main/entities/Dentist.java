@@ -7,6 +7,20 @@ public class Dentist {
    private String lastName;
    private String license;
 
+   // Constructor
+   public Dentist() {}
+   public Dentist(Long id, String name, String lastName, String license) {
+      this.id = id;
+      this.name = name;
+      this.lastName = lastName;
+      this.license = license;
+   }
+
+   public Dentist(String name, String lastName, String license) {
+      this.name = name;
+      this.lastName = lastName;
+      this.license = license;
+   }
 
    // Getters and setters
    public Long getId() {
