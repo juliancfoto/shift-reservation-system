@@ -28,14 +28,16 @@ public class Main {
 
       // DENTISTS AND PATIENTS
       Dentist dentist1;
-      dentist1 = new Dentist(1L, "Julian", "Caicedo", "abc123");
+      dentist1 = new Dentist(1L, "Walter", "White", "09qsbn");
       Dentist dentist2;
-      dentist2 = new Dentist(2L, "Maria", "Abella", "def456");
+      dentist2 = new Dentist(2L, "Saul", "Goodman", "lwyrup");
+      Dentist dentist3;
+      dentist3 = new Dentist(3L, "Mike", "Ehrmantraut", "vr57g1");
 
       Patient patient1;
-      patient1 = new Patient(1L, "Mateo", "Ruiz", "Cll 8 sur", "1013691", "2022-11-03");
+      patient1 = new Patient(1L, "Jesse", "Pinkman", "325 Terrace St SE, Albuquerque", "1013691", "2022-11-03");
       Patient patient2;
-      patient2 = new Patient(2L, "Jaime", "Cardenas", "Cll 16 sur", "1013653", "2022-12-06");
+      patient2 = new Patient(2L, "Gustavo", "Fring", "1213 Jefferson St NE, Albuquerque", "5247843", "2022-12-06");
 
       // SERVICES
       DentistService dentistService = new DentistService();
@@ -49,12 +51,14 @@ public class Main {
       // CREATE
       dentistService.createDentist(dentist1);
       dentistService.createDentist(dentist2);
+      dentistService.createDentist(dentist3);
       patientService.createPatient(patient1);
       patientService.createPatient(patient2);
 
       // READ
       dentistService.readDentist(1L);
       dentistService.readDentist(2L);
+      dentistService.readDentist(3L);
       patientService.readPatient(1L);
       patientService.readPatient(2L);
 
@@ -63,7 +67,6 @@ public class Main {
       patientService.createPatient(patient1);*/
 
       // DELETE
-//      dentistService.deleteDentist(2L);
-
+      dentistService.deleteDentist(2L);
    }
 }
