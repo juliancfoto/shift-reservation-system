@@ -31,16 +31,16 @@ public class Main {
 
       // DENTISTS AND PATIENTS
       Dentist dentist1;
-      dentist1 = new Dentist(1L, "Walter", "White", "09qsbn");
+      dentist1 = new Dentist("Walter", "White", "09qsbn");
       Dentist dentist2;
-      dentist2 = new Dentist(2L, "Saul", "Goodman", "lwyrup");
+      dentist2 = new Dentist("Saul", "Goodman", "lwyrup");
       Dentist dentist3;
-      dentist3 = new Dentist(3L, "Mike", "Ehrmantraut", "vr57g1");
+      dentist3 = new Dentist("Mike", "Ehrmantraut", "vr57g1");
 
       Patient patient1;
-      patient1 = new Patient(1L, "Jesse", "Pinkman", "325 Terrace St SE, Albuquerque", "1013691", "2022-11-03");
+      patient1 = new Patient("Jesse", "Pinkman", "325 Terrace St SE, Albuquerque", "1013691", "2022-11-03");
       Patient patient2;
-      patient2 = new Patient(2L, "Gustavo", "Fring", "1213 Jefferson St NE, Albuquerque", "5247843", "2022-12-06");
+      patient2 = new Patient("Gustavo", "Fring", "1213 Jefferson St NE, Albuquerque", "5247843", "2022-12-06");
 
       // SERVICES
       DentistService dentistService = new DentistService();

@@ -1,4 +1,5 @@
 -- Query to create Dentists table
+-- DROP TABLE Dentists;
 CREATE TABLE IF NOT EXISTS Dentists(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -7,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Dentists(
 );
 
 -- Query to create Patients table
+-- DROP TABLE Patients;
 CREATE TABLE IF NOT EXISTS Patients(
    id INT AUTO_INCREMENT PRIMARY KEY,
    name VARCHAR(255) NOT NULL,

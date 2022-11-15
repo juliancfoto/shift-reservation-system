@@ -37,8 +37,8 @@ public class PatientIDao implements IDao<Patient> {
 
       // Query to create a Patient
       final String SQL_INSERT = """
-             INSERT INTO Patients(id, name, lastname, address, dni, discharge_date)
-             VALUES(?, ?, ?, ?, ?, ?);
+             INSERT INTO Patients(name, lastname, address, dni, discharge_date)
+             VALUES(?, ?, ?, ?, ?);
              """;
 
       // Connect to Driver
@@ -50,12 +50,11 @@ public class PatientIDao implements IDao<Patient> {
          preparedStatement = connection.prepareStatement(SQL_INSERT);
 
          // Insert data to table Patients
-         preparedStatement.setLong(1, patient.getId());
-         preparedStatement.setString(2, patient.getName());
-         preparedStatement.setString(3, patient.getLastName());
-         preparedStatement.setString(4, patient.getAddress());
-         preparedStatement.setString(5, patient.getDni());
-         preparedStatement.setString(6, patient.getDischargeDate());
+         preparedStatement.setString(1, patient.getName());
+         preparedStatement.setString(2, patient.getLastName());
+         preparedStatement.setString(3, patient.getAddress());
+         preparedStatement.setString(4, patient.getDni());
+         preparedStatement.setString(5, patient.getDischargeDate());
 
          // Execute and commit
          preparedStatement.executeUpdate();

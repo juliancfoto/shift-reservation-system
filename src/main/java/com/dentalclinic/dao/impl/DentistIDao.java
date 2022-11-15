@@ -37,8 +37,8 @@ public class DentistIDao implements IDao<Dentist> {
 
       // Query to create a Dentist
       final String SQL_INSERT = """
-             INSERT INTO Dentists(id, name, lastname, license)
-             VALUES(?, ?, ?, ?);
+             INSERT INTO Dentists(name, lastname, license)
+             VALUES(?, ?, ?);
              """;
 
       // Connect to Driver
@@ -50,10 +50,9 @@ public class DentistIDao implements IDao<Dentist> {
          preparedStatement = connection.prepareStatement(SQL_INSERT);
 
          // Insert data to table Dentists
-         preparedStatement.setLong(1, dentist.getId());
-         preparedStatement.setString(2, dentist.getName());
-         preparedStatement.setString(3, dentist.getLastName());
-         preparedStatement.setString(4, dentist.getLicense());
+         preparedStatement.setString(1, dentist.getName());
+         preparedStatement.setString(2, dentist.getLastName());
+         preparedStatement.setString(3, dentist.getLicense());
 
          // Execute and commit
          preparedStatement.executeUpdate();
