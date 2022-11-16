@@ -5,6 +5,8 @@ import com.dentalclinic.entities.Patient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PatientIDao implements IDao<Patient> {
    // Attributes
@@ -159,6 +161,86 @@ public class PatientIDao implements IDao<Patient> {
          }
       }
       return patient;
+   }
+
+   @Override
+   public List<Patient> readAll() {
+      // Patients list
+      List<Patient> patients = new ArrayList<>();
+
+      // Create connection and preparedStatement
+      Connection connection = null;
+      PreparedStatement preparedStatement;
+      Patient patient = null;
+
+      // Query to read/search all Patients
+      final String SQL_SEARCH_ALL = """
+             SELECT * FROM Patients;
+             """;
+
+      // Connect to Driver
+      try {
+         connection = getConnection();
+         connection.setAutoCommit(false);
+
+         // Create and use preparedStatement to search all Dentists
+         preparedStatement = connection.prepareStatement(SQL_SEARCH_ALL);
+
+         // Execute and commit
+         ResultSet result = preparedStatement.executeQuery();
+
+         while (result.next()) {
+            patient = new Patient();
+            Long patientId = result.getLong("id");
+            String patientName = result.getString("Name");
+            String patientLastName = result.getString("Lastname");
+            String patientAddress = result.getString("Address");
+            String patientDni = result.getString("DNI");
+            String patientDischargeDate = result.getString("Discharge_Date");
+
+            patient.setId(patientId);
+            patient.setName(patientName);
+            patient.setLastName(patientLastName);
+            patient.setAddress(patientAddress);
+            patient.setDni(patientDni);
+            patient.setDischargeDate(patientDischargeDate);
+
+            // Add each patient to the patients list
+            patients.add(patient);
+
+            LOGGER.info("Reading all Patients...");
+
+            System.out.printf("""
+                    |  id  |  Name  | Lastname  |  Address  |  DNI  |  Discharge_Date  |
+                    |  %d  |  %s  |  %s  |  %s  |  %s  |  %s  |%n
+                    """,
+                   result.getLong(1), result.getString(2),
+                   result.getString(3), result.getString(4),
+                   result.getString(5), result.getString(6));
+         }
+
+         connection.commit();
+         connection.setAutoCommit(true);
+
+      } catch (Exception e) {
+         // Rollback to undo changes in case of failure
+         try {
+            assert connection != null;
+            connection.rollback();
+         } catch (SQLException exc) {
+            LOGGER.error(exc.getMessage());
+         }
+
+      } finally {
+         // Close connection
+         try {
+            assert connection != null;
+            connection.close();
+         } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+         }
+      }
+      return patients;
    }
 
    @Override // TODO

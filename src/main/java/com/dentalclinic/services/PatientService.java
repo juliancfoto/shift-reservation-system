@@ -3,6 +3,8 @@ package com.dentalclinic.services;
 import com.dentalclinic.dao.IDao;
 import com.dentalclinic.entities.Patient;
 
+import java.util.List;
+
 public class PatientService {
    // Attributes
    private IDao<Patient> patientIDao;
@@ -16,6 +18,11 @@ public class PatientService {
    public Patient readPatient(Long id) {
       // Using DAO interface to read/search a Patient
       return patientIDao.read(id);
+   }
+
+   public List<Patient> readAllPatients() {
+      // Using DAO interface to read/search all Patients
+      return patientIDao.readAll();
    }
 
    public boolean updatePatient(Patient patient) {

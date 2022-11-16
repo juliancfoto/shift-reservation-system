@@ -2,6 +2,7 @@ package com.dentalclinic.services;
 
 import com.dentalclinic.dao.IDao;
 import com.dentalclinic.entities.Dentist;
+import java.util.List;
 
 public class DentistService {
    // Attributes
@@ -16,6 +17,11 @@ public class DentistService {
    public Dentist readDentist(Long id) {
       // Using DAO interface to read/search a Dentist
       return dentistIDao.read(id);
+   }
+
+   public List<Dentist> readAllDentists() {
+      // Using DAO interface to read/search all Dentists
+      return dentistIDao.readAll();
    }
 
    public boolean updateDentist(Dentist dentist) {

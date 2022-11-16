@@ -5,6 +5,8 @@ import com.dentalclinic.entities.Dentist;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DentistIDao implements IDao<Dentist> {
    // Attributes
@@ -152,6 +154,81 @@ public class DentistIDao implements IDao<Dentist> {
          }
       }
       return dentist;
+   }
+
+   @Override
+   public List<Dentist> readAll() {
+      // Dentists list
+      List<Dentist> dentists = new ArrayList<>();
+
+      // Create connection and preparedStatement
+      Connection connection = null;
+      PreparedStatement preparedStatement;
+      Dentist dentist = null;
+
+      // Query to read/search all Dentists
+      final String SQL_SEARCH_ALL = """
+             SELECT * FROM Dentists;
+             """;
+
+      // Connect to Driver
+      try {
+         connection = getConnection();
+         connection.setAutoCommit(false);
+
+         // Create and use preparedStatement to search all Dentists
+         preparedStatement = connection.prepareStatement(SQL_SEARCH_ALL);
+
+         // Execute and commit
+         ResultSet result = preparedStatement.executeQuery();
+
+         while (result.next()) {
+            dentist = new Dentist();
+            Long dentistId = result.getLong("id");
+            String dentistName = result.getString("Name");
+            String dentistLastName = result.getString("Lastname");
+            String dentistLicense = result.getString("License");
+
+            dentist.setId(dentistId);
+            dentist.setName(dentistName);
+            dentist.setLastName(dentistLastName);
+            dentist.setLicense(dentistLicense);
+
+            // Add each dentist to the dentists list
+            dentists.add(dentist);
+
+            LOGGER.info("Reading all Dentists...");
+
+            System.out.printf("""
+                   |  id  |  Name  |  Lastname  |  License  |
+                   |  %d  |  %s  |  %s  |  %s  |%n
+                   """,
+                   result.getLong(1), result.getString(2),
+                   result.getString(3), result.getString(4));
+         }
+
+         connection.commit();
+         connection.setAutoCommit(true);
+
+      } catch (Exception e) {
+         // Rollback to undo changes in case of failure
+         try {
+            assert connection != null;
+            connection.rollback();
+         } catch (SQLException exc) {
+            LOGGER.error(exc.getMessage());
+         }
+
+      } finally {
+         // Close connection
+         try {
+            assert connection != null;
+            connection.close();
+         } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+         }
+      }
+      return dentists;
    }
 
    @Override // TODO
