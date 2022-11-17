@@ -24,7 +24,7 @@ public class DentistService {
       return dentistIDao.readAll();
    }
 
-   public boolean updateDentist(Dentist dentist) {
+   public Dentist updateDentist(Dentist dentist) {
       // Using DAO interface to update Dentist data
       return dentistIDao.update(dentist);
    }

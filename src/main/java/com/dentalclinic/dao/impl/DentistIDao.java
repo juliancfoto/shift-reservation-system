@@ -236,18 +236,59 @@ public class DentistIDao implements IDao<Dentist> {
       return dentists;
    }
 
-   @Override // TODO
-   public boolean update(Dentist dentist) {
+   @Override
+   public Dentist update(Dentist dentist) {
       // Create connection and preparedStatement
       Connection connection = null;
       PreparedStatement preparedStatement = null;
 
       // Query to update Dentist data
       final String SQL_UPDATE = """
-             
+             UPDATE Dentists
+             SET name = ?, lastname = ?, license = ?
+             WHERE id = ?
              """;
 
-      return false;
+      // Connect to Driver
+      try {
+         connection = getConnection();
+         connection.setAutoCommit(false);
+
+         // Use preparedStatement to update a Dentist
+         preparedStatement = connection.prepareStatement(SQL_UPDATE);
+
+         // Update from table Dentists
+         preparedStatement.setString(1, dentist.getName());
+         preparedStatement.setString(2, dentist.getLastName());
+         preparedStatement.setString(3, dentist.getLicense());
+         preparedStatement.setLong(4, dentist.getId());
+
+         // Execute and commit
+         preparedStatement.executeUpdate();
+         connection.commit();
+         connection.setAutoCommit(true);
+         LOGGER.info("Dentist with id = " + dentist.getId() + " updated.");
+
+      } catch (Exception e) {
+         // Rollback to undo changes in case of failure
+         try {
+            assert connection != null;
+            connection.rollback();
+         } catch (SQLException exc) {
+            LOGGER.error(exc.getMessage());
+         }
+
+      } finally {
+         // Close connection
+         try {
+            assert preparedStatement != null;
+            preparedStatement.close();
+            connection.close();
+         } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+         }
+      }
+      return dentist;
    }
 
    @Override

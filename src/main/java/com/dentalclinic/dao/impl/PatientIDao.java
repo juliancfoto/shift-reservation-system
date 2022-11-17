@@ -248,12 +248,61 @@ public class PatientIDao implements IDao<Patient> {
       return patients;
    }
 
-   @Override // TODO
-   public boolean update(Patient patient) {
+   @Override
+   public Patient update(Patient patient) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
-      return false;
+      PreparedStatement preparedStatement = null;
+
+      // Query to update Patient data
+      final String SQL_UPDATE = """
+             UPDATE Patients
+             SET name = ?, lastname = ?, address = ?, dni = ?, discharge_date = ?
+             WHERE id = ?;
+             """;
+
+      // Connect to Driver
+      try {
+         connection = getConnection();
+         connection.setAutoCommit(false);
+
+         // Use preparedStatement to update a Patient
+         preparedStatement = connection.prepareStatement(SQL_UPDATE);
+
+         // Update from table Patients
+         preparedStatement.setString(1, patient.getName());
+         preparedStatement.setString(2, patient.getLastName());
+         preparedStatement.setString(3, patient.getAddress());
+         preparedStatement.setString(4, patient.getDni());
+         preparedStatement.setString(5, patient.getDischargeDate());
+         preparedStatement.setLong(6, patient.getId());
+
+         // Execute and commit
+         preparedStatement.executeUpdate();
+         connection.commit();
+         connection.setAutoCommit(true);
+         LOGGER.info("Patient with id = " + patient.getId() + " updated.");
+
+      } catch (Exception e) {
+         // Rollback to undo changes in case of failure
+         try {
+            assert connection != null;
+            connection.rollback();
+         } catch (SQLException exc) {
+            LOGGER.error(exc.getMessage());
+         }
+
+      } finally {
+         // Close connection
+         try {
+            assert preparedStatement != null;
+            preparedStatement.close();
+            connection.close();
+         } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+         }
+      }
+      return patient;
    }
 
    @Override

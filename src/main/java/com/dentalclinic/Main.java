@@ -19,7 +19,7 @@ public class Main {
       *  3. Migrate from Log4J to Log4J2  *Append file is missing*  -DONE
       *  4. Create interface  -DONE
       *  5. Create script sql for creating database tables  -DONE
-      *  5. Create interface implementations (DentistIDao, PatientIDao) *Update is missing*  -IN PROGRESS
+      *  5. Create interface implementations (DentistIDao, PatientIDao) -DONE
       *  6. Create com.dentalclinic.services classes (DentistService, PatientService)  -DONE
       *  7. Create Dentist, Patient and com.dentalclinic.services objects in com.dentalclinic.Main  *CRUD works* -DONE
       *  8. Add and use loggings  -DONE
@@ -27,6 +27,8 @@ public class Main {
       *        - create()  -DONE
       *  10. Migrate to Maven project -DONE
       *  11. Migrate to Springboot project  -DONE
+      *  12. Create Controllers classes (DentistController, PatientController) -IN PROGRESS
+      *        - read() and update()  -DONE
       * */
 
       // DENTISTS AND PATIENTS
@@ -41,6 +43,8 @@ public class Main {
       patient1 = new Patient("Jesse", "Pinkman", "325 Terrace St SE, Albuquerque", "1013691", "2022-11-03");
       Patient patient2;
       patient2 = new Patient("Gustavo", "Fring", "1213 Jefferson St NE, Albuquerque", "5247843", "2022-12-06");
+      Patient patient3;
+      patient3 = new Patient("Mateo", "Ruiz", "1213 Jefferson St NE, Albuquerque", "5247843", "2022-12-06");
 
       // SERVICES
       DentistService dentistService = new DentistService();
@@ -52,24 +56,31 @@ public class Main {
 
       // USING DATABASE
       // CREATE
-      dentistService.createDentist(dentist1);
+      /*dentistService.createDentist(dentist1);
       dentistService.createDentist(dentist2);
       dentistService.createDentist(dentist3);
       patientService.createPatient(patient1);
       patientService.createPatient(patient2);
+      patientService.createPatient(patient3);
 
       // READ
       dentistService.readDentist(1L);
       dentistService.readDentist(2L);
       dentistService.readDentist(3L);
       patientService.readPatient(1L);
-      patientService.readPatient(2L);
+      patientService.readPatient(2L);*/
 
-      /*UPDATE // TODO
-      dentistService.createDentist(dentist2);
-      patientService.createPatient(patient1);*/
+      // READ ALL
+      dentistService.readAllDentists();
+      patientService.readAllPatients();
+
+      // UPDATE
+      /*Dentist dentistToUpdate = new Dentist();
+      Patient patientToUpdate = new Patient();
+      dentistService.updateDentist(dentistToUpdate);
+      patientService.updatePatient(patientToUpdate);*/
 
       // DELETE
-      dentistService.deleteDentist(2L);
+      /*dentistService.deleteDentist(2L);*/
    }
 }

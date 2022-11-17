@@ -25,7 +25,7 @@ public class PatientService {
       return patientIDao.readAll();
    }
 
-   public boolean updatePatient(Patient patient) {
+   public Patient updatePatient(Patient patient) {
       // Using DAO interface to update Patient data
       return patientIDao.update(patient);
    }
