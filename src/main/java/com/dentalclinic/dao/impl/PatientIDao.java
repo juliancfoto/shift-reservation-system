@@ -35,7 +35,7 @@ public class PatientIDao implements IDao<Patient> {
    public Patient create(Patient patient) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
 
       // Query to create a Patient
       final String SQL_INSERT = """
@@ -75,7 +75,8 @@ public class PatientIDao implements IDao<Patient> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -89,7 +90,7 @@ public class PatientIDao implements IDao<Patient> {
    public Patient read(Long id) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
       Patient patient = null;
 
       // Query to read/search a Patient
@@ -138,6 +139,7 @@ public class PatientIDao implements IDao<Patient> {
                    result.getString(3), result.getString(4),
                    result.getString(5), result.getString(6));
          }
+         result.close();
 
          connection.commit();
          connection.setAutoCommit(true);
@@ -154,7 +156,8 @@ public class PatientIDao implements IDao<Patient> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -170,7 +173,7 @@ public class PatientIDao implements IDao<Patient> {
 
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
       Patient patient = null;
 
       // Query to read/search all Patients
@@ -218,6 +221,7 @@ public class PatientIDao implements IDao<Patient> {
                    result.getString(3), result.getString(4),
                    result.getString(5), result.getString(6));
          }
+         result.close();
 
          connection.commit();
          connection.setAutoCommit(true);
@@ -234,7 +238,8 @@ public class PatientIDao implements IDao<Patient> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -255,7 +260,7 @@ public class PatientIDao implements IDao<Patient> {
    public void delete(Long id) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
 
       // Query to delete a Patient
       final String SQL_DELETE = """
@@ -292,7 +297,8 @@ public class PatientIDao implements IDao<Patient> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());

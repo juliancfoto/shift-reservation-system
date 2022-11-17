@@ -35,7 +35,7 @@ public class DentistIDao implements IDao<Dentist> {
    public Dentist create(Dentist dentist) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
 
       // Query to create a Dentist
       final String SQL_INSERT = """
@@ -73,7 +73,8 @@ public class DentistIDao implements IDao<Dentist> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -87,7 +88,7 @@ public class DentistIDao implements IDao<Dentist> {
    public Dentist read(Long id) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
       Dentist dentist = null;
 
       // Query to read/search a Dentist
@@ -131,6 +132,7 @@ public class DentistIDao implements IDao<Dentist> {
                    result.getLong(1), result.getString(2),
                    result.getString(3), result.getString(4));
          }
+         result.close();
 
          connection.commit();
          connection.setAutoCommit(true);
@@ -147,7 +149,8 @@ public class DentistIDao implements IDao<Dentist> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -163,7 +166,7 @@ public class DentistIDao implements IDao<Dentist> {
 
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
       Dentist dentist = null;
 
       // Query to read/search all Dentists
@@ -206,6 +209,7 @@ public class DentistIDao implements IDao<Dentist> {
                    result.getLong(1), result.getString(2),
                    result.getString(3), result.getString(4));
          }
+         result.close();
 
          connection.commit();
          connection.setAutoCommit(true);
@@ -222,7 +226,8 @@ public class DentistIDao implements IDao<Dentist> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -249,7 +254,7 @@ public class DentistIDao implements IDao<Dentist> {
    public void delete(Long id) {
       // Create connection and preparedStatement
       Connection connection = null;
-      PreparedStatement preparedStatement;
+      PreparedStatement preparedStatement = null;
 
       // Query to delete a Dentist
       final String SQL_DELETE = """
@@ -286,7 +291,8 @@ public class DentistIDao implements IDao<Dentist> {
       } finally {
          // Close connection
          try {
-            assert connection != null;
+            assert preparedStatement != null;
+            preparedStatement.close();
             connection.close();
          } catch (SQLException e) {
             LOGGER.error(e.getMessage());
