@@ -49,7 +49,7 @@ public class DentistIDao implements IDao<Dentist> {
          connection.setAutoCommit(false);
 
          // Create and use preparedStatement to create a Dentist
-         preparedStatement = connection.prepareStatement(SQL_INSERT);
+         preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
          // Insert data to table Dentists
          preparedStatement.setString(1, dentist.getName());
@@ -58,6 +58,14 @@ public class DentistIDao implements IDao<Dentist> {
 
          // Execute and commit
          preparedStatement.executeUpdate();
+
+         // Get keys to show JSON result with correct ID
+         ResultSet keys = preparedStatement.getGeneratedKeys();
+
+         while (keys.next()) {
+            dentist.setId(keys.getLong(1));
+         }
+
          connection.commit();
          connection.setAutoCommit(true);
 

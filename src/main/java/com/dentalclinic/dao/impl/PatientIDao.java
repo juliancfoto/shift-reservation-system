@@ -49,7 +49,7 @@ public class PatientIDao implements IDao<Patient> {
          connection.setAutoCommit(false);
 
          // Create and use preparedStatement to create a Patient
-         preparedStatement = connection.prepareStatement(SQL_INSERT);
+         preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
          // Insert data to table Patients
          preparedStatement.setString(1, patient.getName());
@@ -60,6 +60,14 @@ public class PatientIDao implements IDao<Patient> {
 
          // Execute and commit
          preparedStatement.executeUpdate();
+
+         // Get keys to show JSON result with correct ID
+         ResultSet keys = preparedStatement.getGeneratedKeys();
+
+         while (keys.next()) {
+            patient.setId(keys.getLong(1));
+         }
+
          connection.commit();
          connection.setAutoCommit(true);
 
