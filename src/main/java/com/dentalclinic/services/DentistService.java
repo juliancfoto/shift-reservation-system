@@ -2,11 +2,17 @@ package com.dentalclinic.services;
 
 import com.dentalclinic.dao.IDao;
 import com.dentalclinic.entities.Dentist;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public class DentistService {
    // Attributes
    private IDao<Dentist> dentistIDao;
+
+   public DentistService(IDao<Dentist> dentistIDao) {
+      this.dentistIDao = dentistIDao;
+   }
 
    // Methods
    public Dentist createDentist(Dentist dentist) {

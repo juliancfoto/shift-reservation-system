@@ -4,10 +4,13 @@ import com.dentalclinic.dao.IDao;
 import com.dentalclinic.entities.Dentist;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class DentistIDao implements IDao<Dentist> {
    // Attributes
    private static final Logger LOGGER = LogManager.getLogger();

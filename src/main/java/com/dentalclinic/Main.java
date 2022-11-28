@@ -28,7 +28,9 @@ public class Main {
       *  10. Migrate to Maven project -DONE
       *  11. Migrate to Springboot project  -DONE
       *  12. Create Controllers classes (DentistController, PatientController) -IN PROGRESS
-      *        - read() and update()  -DONE
+      *        - CRUD() done  -DONE
+      *  13. Use Dependency Injection  -IN PROGRESS
+      *  . USE DTO, RESPONSE ENTITY AND DEPENDENCY INJECTION
       * */
 
       // DENTISTS AND PATIENTS
@@ -47,12 +49,12 @@ public class Main {
       patient3 = new Patient("Mateo", "Ruiz", "1213 Jefferson St NE, Albuquerque", "5247843", "2022-12-06");
 
       // SERVICES
-      DentistService dentistService = new DentistService();
-      PatientService patientService = new PatientService();
+      DentistService dentistService = new DentistService(new DentistIDao());
+      PatientService patientService = new PatientService(new PatientIDao());
 
       // SET DAO TO BE USED FOR EACH SERVICE
-      dentistService.setDentistIDao(new DentistIDao());
-      patientService.setPatientIDao(new PatientIDao());
+      /*dentistService.setDentistIDao(new DentistIDao());
+      patientService.setPatientIDao(new PatientIDao());*/
 
       // USING DATABASE
       // CREATE
