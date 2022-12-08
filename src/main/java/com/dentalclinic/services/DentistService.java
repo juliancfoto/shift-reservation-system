@@ -1,28 +1,46 @@
 package com.dentalclinic.services;
 
 import com.dentalclinic.dao.IDao;
+import com.dentalclinic.dto.DentistDTO;
 import com.dentalclinic.entities.Dentist;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class DentistService {
    // Attributes
    private IDao<Dentist> dentistIDao;
+   private final ObjectMapper objectMapper;
 
-   public DentistService(IDao<Dentist> dentistIDao) {
+   // DEPENDENCY INJECTION
+   @Autowired
+   public DentistService(IDao<Dentist> dentistIDao, ObjectMapper objectMapper) {
       this.dentistIDao = dentistIDao;
+      this.objectMapper = objectMapper;
    }
 
-   // Methods
+   // Methods using DTO
    public Dentist createDentist(Dentist dentist) {
       // Using DAO interface to create a Dentist
       return dentistIDao.create(dentist);
    }
 
-   public Dentist readDentist(Long id) {
+   public DentistDTO readDentist(Long id) {
       // Using DAO interface to read/search a Dentist
-      return dentistIDao.read(id);
+      // Entity object to be mapped
+      Dentist dentist = dentistIDao.read(id);
+
+      // DTO object container
+      DentistDTO dentistDTO;
+
+      // Mapping object to DTO object
+      dentistDTO = objectMapper.convertValue(dentist, DentistDTO.class);
+      dentistDTO.setFullname(dentist.getName() + " " + dentist.getLastName());
+
+      return dentistDTO;
    }
 
    public List<Dentist> readAllDentists() {
