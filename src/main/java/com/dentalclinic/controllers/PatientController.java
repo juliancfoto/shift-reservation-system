@@ -1,7 +1,9 @@
 package com.dentalclinic.controllers;
 
+import com.dentalclinic.dto.PatientDTO;
 import com.dentalclinic.entities.Patient;
 import com.dentalclinic.services.PatientService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +13,13 @@ import java.util.List;
 @RequestMapping("/patients")
 public class PatientController {
    private final PatientService patientService;
+   private final ObjectMapper objectMapper;
 
    // DEPENDENCY INJECTION
    @Autowired
-   public PatientController(PatientService patientService) {
+   public PatientController(PatientService patientService, ObjectMapper objectMapper) {
       this.patientService = patientService;
+      this.objectMapper = objectMapper;
    }
 
    // CREATE A PATIENT
@@ -30,10 +34,19 @@ public class PatientController {
       return patientService.readAllPatients();
    }
 
-   // SEARCH A PATIENT BY ID
+   // SEARCH A PATIENT BY ID USING DTO
    @GetMapping("/search/{id}")
-   public Patient searchById(@PathVariable("id") Long id) {
-      return patientService.readPatient(id);
+   public PatientDTO searchById(@PathVariable("id") Long id) {
+      // Entity to be mapped
+      Patient patient = patientService.readPatient(id);
+
+      // DTO object container
+      PatientDTO patientDTO;
+
+      // Mapping object to DTO object
+      patientDTO = objectMapper.convertValue(patient, PatientDTO.class);
+      patientDTO.setFullname(patient.getName() + " " + patient.getLastName());
+      return patientDTO;
    }
 
    // UPDATE A PATIENT
