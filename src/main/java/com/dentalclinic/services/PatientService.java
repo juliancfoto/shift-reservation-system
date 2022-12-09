@@ -6,6 +6,8 @@ import com.dentalclinic.entities.Patient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,15 +38,30 @@ public class PatientService {
       PatientDTO patientDTO;
 
       // Mapping object to DTO object
-      patientDTO = objectMapper.convertValue(patient, PatientDTO.class);
+      patientDTO = toDTO(patient);
+
       patientDTO.setFullname(patient.getName() + " " + patient.getLastName());
 
       return patientDTO;
    }
 
-   public List<Patient> readAllPatients() {
+   public List<PatientDTO> readAllPatients() {
       // Using DAO interface to read/search all Patients
-      return patientIDao.readAll();
+      // Non DTO object to be mapped
+      List<Patient> patientsList = patientIDao.readAll();
+
+      // DTO object container
+      List<PatientDTO> patientsDTOList = new ArrayList<>();
+
+      // Mapping object to DTO object and assigning full name to each DTO object
+      for (Patient patient : patientsList) {
+         patientsDTOList.add(toDTO(patient));
+
+         for (int i = 0; i < patientsDTOList.size(); i++) {
+            patientsDTOList.get(i).setFullname(patientsList.get(i).getName() + " " + patientsList.get(i).getLastName());
+         }
+      }
+      return patientsDTOList;
    }
 
    public Patient updatePatient(Patient patient) {
@@ -55,6 +72,17 @@ public class PatientService {
    public void deletePatient(Long id) {
       // Using DAO interface to delete a Patient
       patientIDao.delete(id);
+   }
+
+   // Methods for mapping DTOs
+   // From object to DTO object
+   private PatientDTO toDTO(Patient patient) {
+      return objectMapper.convertValue(patient, PatientDTO.class);
+   }
+
+   // From DTO object to object
+   private Patient toEntity(PatientDTO patientDTO) {
+      return objectMapper.convertValue(patientDTO, Patient.class);
    }
 
    // Getters and setters
