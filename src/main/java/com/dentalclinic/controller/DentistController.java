@@ -1,8 +1,8 @@
-package com.dentalclinic.controllers;
+package com.dentalclinic.controller;
 
 import com.dentalclinic.dto.DentistDTO;
-import com.dentalclinic.entities.Dentist;
-import com.dentalclinic.services.DentistService;
+import com.dentalclinic.entity.Dentist;
+import com.dentalclinic.service.impl.DentistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/dentists")
 public class DentistController {
-   private final DentistService dentistService;
+   private final DentistServiceImpl dentistService;
 
    // DEPENDENCY INJECTION
    @Autowired
-   public DentistController(DentistService dentistService) {
-      this.dentistService = dentistService;
+   public DentistController(DentistServiceImpl dentistServiceImpl) {
+      this.dentistService = dentistServiceImpl;
    }
 
    // CREATE A DENTIST
@@ -50,7 +50,7 @@ public class DentistController {
       }
 
       return response;*/
-      return ResponseEntity.ok().body(dentistService.updateDentist(dentist));
+      return dentistService.updateDentist(dentist);
    }
 
    // DELETE A DENTIST TODO RESPONSE ENTITY

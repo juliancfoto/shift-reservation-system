@@ -1,11 +1,5 @@
 package com.dentalclinic;
 
-import com.dentalclinic.dao.impl.DentistIDao;
-import com.dentalclinic.dao.impl.PatientIDao;
-import com.dentalclinic.entities.Dentist;
-import com.dentalclinic.entities.Patient;
-import com.dentalclinic.services.DentistService;
-import com.dentalclinic.services.PatientService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,16 +17,30 @@ public class Main {
       *  6. Create com.dentalclinic.services classes (DentistService, PatientService)  -DONE
       *  7. Create Dentist, Patient and com.dentalclinic.services objects in com.dentalclinic.Main  *CRUD works* -DONE
       *  8. Add and use loggings  -DONE
-      *  9. Create tests for com.dentalclinic.services classes  -IN PROGRESS
+      *  9. Create TESTS for com.dentalclinic.services classes  -IN PROGRESS
       *        - create()  -DONE
       *  10. Migrate to Maven project -DONE
       *  11. Migrate to Springboot project  -DONE
-      *  12. Create Controllers classes (DentistController, PatientController) -IN PROGRESS
+      *  12. Create Controllers classes (DentistController, PatientController) -DONE
       *        - CRUD() done  -DONE
-      *  13. Use Dependency Injection  -IN PROGRESS
-      *  . USE DTO, RESPONSE ENTITY AND DEPENDENCY INJECTION
+      *  13. Use Dependency Injection  -DONE
+      *  14. Use DTO *EVERYTHING MUST USE IT*  -IN PROGRESS
+      *        - read() DTO in Dentist and Patient services  -DONE
+      *        - readAll() DTO in Dentist and Patient services  -DONE
+      *        - create() DTO in Dentist and Patient services  -MISSING
+      *        - delete() DTO in Dentist and Patient services  -MISSING
+      *        - update() DTO in Dentist and Patient services  -MISSING
+      *  15. Use Response Entity  -IN PROGRESS
+      *  16. Use Optional  -IN PROGRESS
+      *  17. Change DAO to ORM JPA  -DONE
+      *  18. Create and use Exceptions
+      *  .
+      *  .
+      *  . MANDATORY: ORM, JPA, EXCEPTIONS HANDLER, SPRING SECURITY, DTO
+      *  . OPTIONAL: RESPONSE ENTITY, OPTIONAL REVISAR PLAYGROUNDDDD
       * */
 
+/*
       // DENTISTS AND PATIENTS
       Dentist dentist1;
       dentist1 = new Dentist("Walter", "White", "09qsbn");
@@ -53,12 +61,12 @@ public class Main {
       PatientService patientService = new PatientService(new PatientIDao());
 
       // SET DAO TO BE USED FOR EACH SERVICE
-      /*dentistService.setDentistIDao(new DentistIDao());
-      patientService.setPatientIDao(new PatientIDao());*/
+      dentistService.setDentistIDao(new DentistIDao());
+      patientService.setPatientIDao(new PatientIDao());
 
       // USING DATABASE
       // CREATE
-      /*dentistService.createDentist(dentist1);
+      dentistService.createDentist(dentist1);
       dentistService.createDentist(dentist2);
       dentistService.createDentist(dentist3);
       patientService.createPatient(patient1);
@@ -70,19 +78,19 @@ public class Main {
       dentistService.readDentist(2L);
       dentistService.readDentist(3L);
       patientService.readPatient(1L);
-      patientService.readPatient(2L);*/
+      patientService.readPatient(2L);
 
       // READ ALL
       dentistService.readAllDentists();
       patientService.readAllPatients();
 
       // UPDATE
-      /*Dentist dentistToUpdate = new Dentist();
+      Dentist dentistToUpdate = new Dentist();
       Patient patientToUpdate = new Patient();
       dentistService.updateDentist(dentistToUpdate);
-      patientService.updatePatient(patientToUpdate);*/
+      patientService.updatePatient(patientToUpdate);
 
       // DELETE
-      /*dentistService.deleteDentist(2L);*/
+      dentistService.deleteDentist(2L);*/
    }
 }

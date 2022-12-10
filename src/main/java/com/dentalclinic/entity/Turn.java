@@ -1,4 +1,4 @@
-package com.dentalclinic.entities;
+package com.dentalclinic.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
