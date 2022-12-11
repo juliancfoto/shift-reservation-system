@@ -33,7 +33,10 @@ public class Main {
       *  15. Use Response Entity  -IN PROGRESS
       *  16. Use Optional  -IN PROGRESS
       *  17. Change DAO to ORM JPA  -DONE
-      *  18. Create and use Exceptions
+      *     - USE RELATIONS ONETOMANY, etc  -MISSING
+      *     - USE QUERY METHODS AND HQL  -MISSING
+      *  18. Review the use of Log4J. Downgrade Log4j2 to Log4j 1.2.x  -DONE
+      *  19. Create and use Exceptions  -DOING
       *  .
       *  .
       *  . MANDATORY: ORM, JPA, EXCEPTIONS HANDLER, SPRING SECURITY, DTO
