@@ -1,30 +1,23 @@
 package com.dentalclinic.service.impl;
 
-import com.dentalclinic.dto.DentistDTO;
 import com.dentalclinic.entity.Dentist;
 import com.dentalclinic.repository.DentistRepository;
 import com.dentalclinic.service.DentistService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DentistServiceImpl implements DentistService {
    // Attributes
    private final DentistRepository dentistRepository;
-   private final ObjectMapper objectMapper;
 
    // DEPENDENCY INJECTION
    @Autowired
-   public DentistServiceImpl(DentistRepository dentistRepository, ObjectMapper objectMapper) {
+   public DentistServiceImpl(DentistRepository dentistRepository) {
       this.dentistRepository = dentistRepository;
-      this.objectMapper = objectMapper;
    }
 
    // Methods using DTO
@@ -35,59 +28,31 @@ public class DentistServiceImpl implements DentistService {
    }
 
    @Override
-   public DentistDTO readDentist(Long id) {
+   public Dentist readDentist(Long id) {
       // Using Repository class to read/search a Dentist
-      // Entity object to be mapped
-      Dentist dentist = dentistRepository.findById(id).orElse(null);
-
-      // DTO object container
-      DentistDTO dentistDTO;
-
-      // Mapping object to DTO object
-      dentistDTO = toDTO(dentist);
-
-      if (dentist != null) {
-         dentistDTO.setFullname(dentist.getName() + " " + dentist.getLastname());
-      } /*else { // TODO Use personalized exception
-         throw new NullPointerException("Errorrr");
-      }*/
-
-      return dentistDTO;
+      return dentistRepository.findById(id).orElse(null);
    }
 
    @Override
-   public List<DentistDTO> readAllDentists() {
+   public List<Dentist> readAllDentists() {
       // Using Repository class to read/search all Dentists
-      // Non DTO object to be mapped
-      List<Dentist> dentistsList = dentistRepository.findAll();
-
-      // DTO object container
-      List<DentistDTO> dentistsDTOList = new ArrayList<>();
-
-      // Mapping object to DTO object and assigning full name to each DTO object
-      for (Dentist dentist : dentistsList) {
-         dentistsDTOList.add(toDTO(dentist));
-
-         for (int i = 0; i < dentistsDTOList.size(); i++) {
-            dentistsDTOList.get(i).setFullname(dentistsList.get(i).getName() + " " + dentistsList.get(i).getLastname());
-         }
-      }
-      return dentistsDTOList;
+      return dentistRepository.findAll();
    }
 
-   @Override
-   public ResponseEntity<Dentist> updateDentist(@NotNull Dentist dentist) {
+   @Override // TODO REVIEW EXCEPTION WHEN DENTIST'S ID DOESN'T EXIST
+   public Dentist updateDentist(@NotNull Dentist dentist) {
       // Using Repository class to update Dentist data
       int response = dentistRepository.update(
              dentist.getName(), dentist.getLastname(), dentist.getLicense(),dentist.getId()
       );
 
       // TODO -- EXCEPTIONS ID NOT FOUND
-      if (response == 0) {
+      /*if (response == 0) {
          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(dentist);
 
       }
-      return ResponseEntity.ok().body(dentist);
+      return ResponseEntity.ok().body(dentist);*/
+      return dentist;
    }
 
    @Override
@@ -99,17 +64,5 @@ public class DentistServiceImpl implements DentistService {
       } /*else { // TODO Use personalized exception
          throw new NullPointerException("Errorrr");
       }*/
-   }
-
-
-   // Methods for mapping DTOs
-   // From object to DTO object
-   private DentistDTO toDTO(Dentist dentist) {
-      return objectMapper.convertValue(dentist, DentistDTO.class);
-   }
-
-   // From DTO object to object
-   private Dentist toEntity(DentistDTO dentistDTO) {
-      return objectMapper.convertValue(dentistDTO, Dentist.class);
    }
 }
