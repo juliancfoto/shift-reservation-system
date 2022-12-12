@@ -52,3 +52,100 @@ Dentist with id = 27 not found.
 [2022-12-12 09:44:54] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
 [2022-12-12 09:45:01] [ ERROR] [GlobalException:21] Patient with id = 15 not found.
 [2022-12-12 09:45:11] [ ERROR] [GlobalException:21] Patient cannot be updated. Patient with id = 15 not found.
+[2022-12-12 11:35:55] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 11:36:58] [ ERROR] [GlobalException:21] There are not shifts created.
+[2022-12-12 11:38:15] [ ERROR] [GlobalException:21] Shift with id = 1 not found.
+[2022-12-12 11:39:06] [ ERROR] [GlobalException:21] Shift cannot be deleted. Shift with id = 1 not found.
+[2022-12-12 11:39:38] [ ERROR] [GlobalException:21] Shift datetime cannot be updated. Shift with id = 1 not found.
+[2022-12-12 11:46:05] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 11:46:15] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 11:47:59] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 11:51:47] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 11:51:57] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 11:55:37] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 11:55:46] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 12:01:52] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:03:39] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:04:31] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:06:33] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:07:53] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:08:02] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 12:09:25] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:09:35] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 12:11:03] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:23:02] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:23:26] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:30:40] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:33:52] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:35:02] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:37:24] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:38:14] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:39:35] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:40:24] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:40:33] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:41:17] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:41:26] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:42:10] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:42:18] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:42:42] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:44:58] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 12:45:55] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:46:41] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:47:01] [ ERROR] [GlobalException:21] No shifts have been created.
+[2022-12-12 12:53:12] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:54:01] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:54:34] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:55:07] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:55:25] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:55:28] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:55:52] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:56:00] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:56:12] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 12:56:19] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 12:57:54] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:00:56] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:01:44] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:13:30] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:18:54] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:23:14] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:47:08] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:51:42] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:52:11] [ ERROR] [GlobalException:21] Shift datetime cannot be updated. Shift with id = 5 not found.
+[2022-12-12 13:54:06] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 13:54:24] [ ERROR] [GlobalException:21] Shift cannot be deleted. Shift with id = 5 not found.
+[2022-12-12 13:54:29] [ ERROR] [GlobalException:21] Shift cannot be deleted. Shift with id = 4 not found.
+[2022-12-12 13:55:42] [ ERROR] [GlobalException:21] Shift cannot be deleted. Shift with id = 3 not found.
+[2022-12-12 13:59:35] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:02:20] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:05:56] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:08:21] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:16:43] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:18:59] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:26:51] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:28:25] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:35:01] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:44:58] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:49:32] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:52:29] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:52:35] [ ERROR] [GlobalException:21] Shift with id = 5 not found.
+[2022-12-12 14:53:08] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:53:39] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:55:40] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:56:41] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 14:57:25] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:01:47] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:11:54] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:20:28] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:26:29] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:30:30] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:31:31] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:33:46] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 15:35:48] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 16:12:27] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 16:38:17] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 16:39:22] [ ERROR] [GlobalException:21] Shift with id = 3 not found.
+[2022-12-12 16:42:23] [ ERROR] [GlobalException:15] Non-existent Dentist or Patient.
+[2022-12-12 16:47:33] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 16:51:46] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 16:53:02] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 16:53:59] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running

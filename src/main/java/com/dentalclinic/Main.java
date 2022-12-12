@@ -28,19 +28,18 @@ public class Main {
       *  15. Use Response Entity  -DONE
       *  16. Use Optional  -DONE
       *  17. Change DAO to ORM JPA  - -- -DOING
-      *     - USE RELATIONS ONETOMANY, etc  -MISSING
+      *     - USE RELATIONS ONETOMANY, etc  -DONE
       *     - USE HQL AND QUERY METHODS  -IN PROGRESS
       *        - HQL  -DONE
       *        - QUERY METHODS  -MISSING
       *  18. Review the use of Log4J. Downgrade Log4j2 to Log4j 1.2.x  -DONE
       *  19. Create and use Exceptions  -DONE
-      *        - READ ALL METHODS  --TEST MISSING
-      *  20. Create Shift entity, repository, dto and service  - -- -DOING
-      *        - Create classes  -IN PROGRESS
-      *        - Create relationship with Dentist and Patient class
-      *  21. Create User entity, repository, dto and service  - -- -DOING
-      *        - Create classes  -IN PROGRESS
-      *        - Create relationship with Dentist and Patient class
+      *  20. Create Shift entity, repository, dto and service  -DONE
+      *        - Create classes  -DONE
+      *        - Create relationship with Dentist and Patient class  -DONE
+      *  21. Create User entity, repository, dto and service  - -- -MISSING
+      *        - Create classes  -MISSING
+      *        - Create relationship with Dentist and Patient class  -MISSING
       *  22. Add security and AUTH to Users  -MISSING
       *  .
       *  .
