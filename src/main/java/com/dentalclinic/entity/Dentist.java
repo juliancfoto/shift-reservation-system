@@ -1,5 +1,6 @@
 package com.dentalclinic.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,8 @@ public class Dentist {
    private String name;
    private String lastname;
    private String license;
+
+   @JsonIgnore
+   @OneToOne(mappedBy = "dentist")
+   private Shift shift;
 }

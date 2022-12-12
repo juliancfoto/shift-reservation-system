@@ -1,5 +1,6 @@
 package com.dentalclinic.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,8 @@ public class Patient {
    @Column(name = "discharge_date")
    // FORMAT: 'YYYY-MM-DD' -> TYPE: DATE in SQL
    private String dischargeDate;
+
+   @JsonIgnore
+   @OneToOne(mappedBy = "patient")
+   private Shift shift;
 }
