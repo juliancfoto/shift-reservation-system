@@ -3,6 +3,7 @@ package com.dentalclinic.controller;
 import com.dentalclinic.dto.DentistCreationDTO;
 import com.dentalclinic.dto.DentistDTO;
 import com.dentalclinic.entity.Dentist;
+import com.dentalclinic.exception.ResourceNotFoundException;
 import com.dentalclinic.service.impl.DentistServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class DentistController {
 
    // SEARCH ALL DENTISTS
    @GetMapping("/search")
-   public ResponseEntity<List<DentistDTO>> searchAll() {
+   public ResponseEntity<List<DentistDTO>> searchAll() throws ResourceNotFoundException {
       // Non DTO object to be mapped
       List<Dentist> dentistsList = dentistService.readAllDentists();
 
@@ -65,7 +66,7 @@ public class DentistController {
 
    // SEARCH A DENTIST BY ID
    @GetMapping("/search/{id}")
-   public ResponseEntity<DentistDTO> searchById(@PathVariable Long id) {
+   public ResponseEntity<DentistDTO> searchById(@PathVariable Long id) throws ResourceNotFoundException {
       // Entity object to be mapped
       Dentist dentist = dentistService.readDentist(id);
 
@@ -78,7 +79,7 @@ public class DentistController {
 
    // UPDATE A DENTIST
    @PutMapping("/update")
-   public ResponseEntity<DentistDTO> update(@RequestBody DentistCreationDTO dentistCreationDTO) {
+   public ResponseEntity<DentistDTO> update(@RequestBody DentistCreationDTO dentistCreationDTO) throws ResourceNotFoundException {
       // Map the received Creation DTO to a Dentist entity
       Dentist dentist = toEntity(dentistCreationDTO);
 
@@ -94,21 +95,18 @@ public class DentistController {
       return ResponseEntity.ok().body(dentistDTO);
    }
 
-   // DELETE A DENTIST TODO RESPONSE ENTITY
-   @DeleteMapping("/delete/{id}") // TODO REVIEW EXCEPTION WHEN PATIENT'S ID DOESN'T EXIST
-   public ResponseEntity<?> delete(@PathVariable Long id) {
+   // DELETE A DENTIST
+   @DeleteMapping("/delete/{id}")
+   public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
       dentistService.deleteDentist(id);
       return ResponseEntity.ok("Dentist with id = " + id + " deleted.");
    }
 
    // MAPPING METHODS
-   // TODO USE PERSONALIZED EXCEPTION
    private void assignFullName(Dentist dentist, DentistDTO dentistDTO) {
       if (dentist != null) {
          dentistDTO.setFullname(dentist.getName() + " " + dentist.getLastname());
-      }  /*else { // TODO Use personalized exception
-         throw new NullPointerException("Errorrr");
-      }*/
+      }
    }
 
    // From object to DTO object

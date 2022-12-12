@@ -1,9 +1,9 @@
 package com.dentalclinic.service.impl;
 
 import com.dentalclinic.entity.Dentist;
+import com.dentalclinic.exception.ResourceNotFoundException;
 import com.dentalclinic.repository.DentistRepository;
 import com.dentalclinic.service.DentistService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,41 +28,51 @@ public class DentistServiceImpl implements DentistService {
    }
 
    @Override
-   public Dentist readDentist(Long id) {
+   public Dentist readDentist(Long id) throws ResourceNotFoundException {
       // Using Repository class to read/search a Dentist
-      return dentistRepository.findById(id).orElse(null);
+      if (dentistRepository.findById(id).isEmpty()) {
+         throw new ResourceNotFoundException("Dentist with id = " + id + " not found.");
+
+      } else {
+         return dentistRepository.findById(id).get();
+      }
+   }
+
+   @Override // TODO RUN POSTMAN EXCEPTION  --DELETE DB CONTENT TO SEE
+   public List<Dentist> readAllDentists() throws ResourceNotFoundException {
+      // Using Repository class to read/search all Dentists
+      if (dentistRepository.findAll().isEmpty()) {
+         throw new ResourceNotFoundException("There are not dentists created.");
+
+      } else {
+         return dentistRepository.findAll();
+      }
    }
 
    @Override
-   public List<Dentist> readAllDentists() {
-      // Using Repository class to read/search all Dentists
-      return dentistRepository.findAll();
-   }
-
-   @Override // TODO REVIEW EXCEPTION WHEN DENTIST'S ID DOESN'T EXIST
-   public Dentist updateDentist(@NotNull Dentist dentist) {
+   public Dentist updateDentist(Dentist dentist) throws ResourceNotFoundException {
       // Using Repository class to update Dentist data
       int response = dentistRepository.update(
              dentist.getName(), dentist.getLastname(), dentist.getLicense(),dentist.getId()
       );
 
-      // TODO -- EXCEPTIONS ID NOT FOUND
-      /*if (response == 0) {
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(dentist);
+      if (response == 0) {
+         throw new ResourceNotFoundException("Dentist cannot be updated. " +
+                "Dentist with id = " + dentist.getId() + " not found.");
 
       }
-      return ResponseEntity.ok().body(dentist);*/
       return dentist;
    }
 
    @Override
-   public void deleteDentist(Long id) {
+   public void deleteDentist(Long id) throws ResourceNotFoundException {
       // Using Repository class to delete a Dentist
-      if (dentistRepository.findById(id).isPresent()) {
-         dentistRepository.deleteById(id);
+      if (dentistRepository.findById(id).isEmpty()) {
+         throw new ResourceNotFoundException("Dentist cannot be deleted. " +
+                "Dentist with id = " + id + " not found.");
 
-      } /*else { // TODO Use personalized exception
-         throw new NullPointerException("Errorrr");
-      }*/
+      } else  {
+         dentistRepository.deleteById(id);
+      }
    }
 }

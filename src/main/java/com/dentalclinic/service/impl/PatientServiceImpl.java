@@ -1,6 +1,7 @@
 package com.dentalclinic.service.impl;
 
 import com.dentalclinic.entity.Patient;
+import com.dentalclinic.exception.ResourceNotFoundException;
 import com.dentalclinic.repository.PatientRepository;
 import com.dentalclinic.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,40 +28,51 @@ public class PatientServiceImpl implements PatientService {
    }
 
    @Override
-   public Patient readPatient(Long id) {
+   public Patient readPatient(Long id) throws ResourceNotFoundException {
       // Using Repository class to read/search a Patient
-      return patientRepository.findById(id).orElse(null);
+      if (patientRepository.findById(id).isEmpty()) {
+         throw new ResourceNotFoundException("Patient with id = " + id + " not found.");
+
+      } else {
+         return patientRepository.findById(id).get();
+      }
+   }
+
+   @Override // TODO RUN POSTMAN EXCEPTION  --DELETE DB CONTENT TO SEE
+   public List<Patient> readAllPatients() throws ResourceNotFoundException {
+      // Using Repository class to read/search all Patients
+      if (patientRepository.findAll().isEmpty()) {
+         throw new ResourceNotFoundException("There are not patients created.");
+
+      } else {
+         return patientRepository.findAll();
+      }
    }
 
    @Override
-   public List<Patient> readAllPatients() {
-      // Using Repository class to read/search all Patients
-      return patientRepository.findAll();
-   }
-
-   @Override // TODO REVIEW EXCEPTION WHEN PATIENT'S ID DOESN'T EXIST
-   public Patient updatePatient(Patient patient) {
+   public Patient updatePatient(Patient patient) throws ResourceNotFoundException {
       // Using Repository class to update Patient data
       int response = patientRepository.update(
              patient.getName(), patient.getLastname(), patient.getAddress(),
              patient.getDni(), patient.getDischargeDate(), patient.getId());
 
-      // TODO -- EXCEPTIONS ID NOT FOUND
-      /*if (response == 0) {
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(patient);
+      if (response == 0) {
+         throw new ResourceNotFoundException("Patient cannot be updated. " +
+                "Patient with id = " + patient.getId() + " not found.");
 
       }
-      return ResponseEntity.ok().body(patient);*/
       return patient;
    }
 
    @Override
-   public void deletePatient(Long id) {
-      // Using DAO interface to delete a Patient
-      if (patientRepository.findById(id).isPresent()) {
+   public void deletePatient(Long id) throws ResourceNotFoundException {
+      // Using Repository class to delete a Patient
+      if (patientRepository.findById(id).isEmpty()) {
+         throw new ResourceNotFoundException("Patient cannot be deleted. " +
+                "Patient with id = " + id + " not found.");
+
+      } else  {
          patientRepository.deleteById(id);
-      } /*else { // TODO Use personalized exception
-         throw new NullPointerException("Errorrr");
-      }*/
+      }
    }
 }

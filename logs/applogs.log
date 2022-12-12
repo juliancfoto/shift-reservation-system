@@ -8,3 +8,47 @@
 [2022-12-11 21:09:53] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
 [2022-12-11 21:10:31] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
 [2022-12-11 21:17:07] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-11 22:58:10] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-11 23:05:30] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-11 23:59:31] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 00:02:05] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 00:03:33] [ ERROR] [GlobalException:21] Dentist with id = 26 not found.
+[2022-12-12 00:16:40] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 00:41:57] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:24:11] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:25:00] [ ERROR] [GlobalException:21] Dentist with id = 27 not found.
+[2022-12-12 08:26:15] [ ERROR] [GlobalException:21] Dentist cannot be updated.
+Dentist with id = 27 not found.
+[2022-12-12 08:28:11] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:28:31] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 26 not found.
+[2022-12-12 08:32:07] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:32:31] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 25 not found.
+[2022-12-12 08:44:49] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:46:07] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:50:38] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:51:07] [ ERROR] [GlobalException:15] Bad Request: Enter a valid id (numeric type).
+[2022-12-12 08:51:46] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 08:52:00] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 28 not found.
+[2022-12-12 09:01:42] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:01:57] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 28 not found.
+[2022-12-12 09:09:34] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:09:41] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 28 not found.
+[2022-12-12 09:11:06] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:11:18] [ ERROR] [GlobalException:15] Bad Request: Enter a valid id (numeric type).
+[2022-12-12 09:13:29] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:14:00] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 28 not found.
+[2022-12-12 09:17:05] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:17:30] [ ERROR] [GlobalException:21] Dentist cannot be updated. Dentist with id = 28 not found.
+[2022-12-12 09:19:00] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:19:24] [ ERROR] [GlobalException:21] Dentist cannot be deleted. Dentist with id = 28 not found.
+[2022-12-12 09:22:30] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:24:35] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:28:19] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:28:54] [ ERROR] [GlobalException:21] Dentist with id = 28 not found.
+[2022-12-12 09:41:39] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:42:05] [ ERROR] [GlobalException:21] Patient with id = 17 not found.
+[2022-12-12 09:43:47] [ ERROR] [GlobalException:21] Patient cannot be updated. Patient with id = 14 not found.
+[2022-12-12 09:44:27] [ ERROR] [GlobalException:21] Patient cannot be deleted. Patient with id = 16 not found.
+[2022-12-12 09:44:54] [ INFO ] [ShiftReservationSystemApplication:13] Spring Application running
+[2022-12-12 09:45:01] [ ERROR] [GlobalException:21] Patient with id = 15 not found.
+[2022-12-12 09:45:11] [ ERROR] [GlobalException:21] Patient cannot be updated. Patient with id = 15 not found.
