@@ -26,4 +26,11 @@ public class Dentist {
    @JsonIgnore
    @OneToOne(mappedBy = "dentist")
    private Shift shift;
+
+   // Constructor for testing
+   public Dentist(String name, String lastname, String license) {
+      this.name = name;
+      this.lastname = lastname;
+      this.license = license;
+   }
 }

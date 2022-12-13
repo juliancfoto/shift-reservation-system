@@ -30,4 +30,13 @@ public class Patient {
    @JsonIgnore
    @OneToOne(mappedBy = "patient")
    private Shift shift;
+
+   // Constructor for testing
+   public Patient(String name, String lastname, String address, String dni, String dischargeDate) {
+      this.name = name;
+      this.lastname = lastname;
+      this.address = address;
+      this.dni = dni;
+      this.dischargeDate = dischargeDate;
+   }
 }
